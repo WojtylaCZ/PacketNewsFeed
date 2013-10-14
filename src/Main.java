@@ -68,10 +68,10 @@ public class Main {
 	    timeWindowInMillis = Long.parseLong(args[1]) * 30 * 1000;
 
 	    rrdFileToUpdate = args[3];
-	    if (!new File(rrdFileToUpdate).exists()) {
-		System.out.println("Cannot find: " + rrdFileToUpdate);
-		System.exit(0);
-	    }
+	     if (!new File(rrdFileToUpdate).exists()) {
+	     System.out.println("xxCannot find: " + rrdFileToUpdate);
+	     System.exit(0);
+	     }
 
 	    // new thread to avoid losing packet while parsing;
 	    read();
@@ -123,9 +123,9 @@ public class Main {
 		// System.out.println(lastEndOfWindow);
 		// System.out.println(timeWindowInMillis);
 
-		printStatsWindow();
+		//printStatsWindow();
 
-		updateRRDfile();
+		 updateRRDfile(lastEndOfWindow);
 
 		// addWindowStatsToGlobal();
 		setWindowStatsToZero();
@@ -133,20 +133,60 @@ public class Main {
 		lastEndOfWindow = lastFrameTime + timeWindowInMillis;
 	    }
 	}
-	printEndStats();
+	// printEndStats();
 
     }
 
-    private static void updateRRDfile() throws IOException {
-	    RrdDef rrdDef = new RrdDef("./rrd/test.rrd");
-	    rrdDef.setStartTime(920804400L);
-	    rrdDef.addDatasource("speed", DsType.COUNTER, 600, Double.NaN, Double.NaN);
-	    rrdDef.addArchive(ConsolFun.AVERAGE, 0.5, 1, 24);
-	    rrdDef.addArchive(ConsolFun.AVERAGE, 0.5, 6, 10);
-	    RrdDb rrdDb;
-	    rrdDb = new RrdDb(rrdDef);
-	
-	//rrdFileToUpdate
+    private static void updateRRDfile(Long lastEndOfWindow) throws IOException {
+	StringBuilder s = new StringBuilder();
+	s.append("update ");
+	s.append(rrdFileToUpdate);
+	s.append(" ");
+	String x = String.valueOf(lastEndOfWindow);
+	s.append(x.substring(0, x.length() - 3));
+	s.append(":");
+	s.append(Long.valueOf(window_datagramSumUDP_port53));
+	s.append(":");
+	s.append(Long.valueOf(window_datagramSumTCP_SYN_port25));
+	s.append(":");
+	s.append(Long.valueOf(window_datagramSumTCP_SYN_port80));
+	s.append(":");
+	s.append(Long.valueOf(window_datagramSumTCP_SYN_port443));
+	s.append(":");
+	s.append(Long.valueOf(window_datagramSumTCP_SYN_port22));
+	s.append(":");
+	s.append(Long.valueOf(window_datagramSumTCP_allOther));
+	s.append(":");
+	s.append(Long.valueOf(window_datagramSumUDP_allOther));
+	s.append(":");
+	s.append(Long.valueOf(window_packetSum_IPv6));
+
+	System.out.println(s.toString());
+
+	// System.out.println("Amount of DNS conn - UDPport 53:\t" +
+	// window_datagramSumUDP_port53);
+	//
+	// System.out.println("Amount of SPAM conn - TCPport 25:\t" +
+	// window_datagramSumTCP_SYN_port25);
+	//
+	// System.out.println("Amount of WEB conn - TCPport 80:\t" +
+	// window_datagramSumTCP_SYN_port80);
+	//
+	//
+	// System.out.println("Amount of SSL conn - TCPport 443:\t" +
+	// window_datagramSumTCP_SYN_port443);
+	//
+	// System.out.println("Amount of SSH conn - TCPport 22:\t" +
+	// window_datagramSumTCP_SYN_port22);
+	//
+	// System.out.println("Amount of TCP+SYN all conn:\t" +
+	// window_datagramSumTCP_allOther);
+	//
+	// System.out.println("Amount of UDP all conn:\t" +
+	// window_datagramSumUDP_allOther);
+	//
+	// System.out.println("Amount of IPv6 packets:\t" +
+	// window_packetSum_IPv6);
 
     }
 
