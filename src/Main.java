@@ -137,7 +137,7 @@ public class Main {
 
     }
 
-    private static void updateRRDfile() {
+    private static void updateRRDfile() throws IOException {
 	    RrdDef rrdDef = new RrdDef("./rrd/test.rrd");
 	    rrdDef.setStartTime(920804400L);
 	    rrdDef.addDatasource("speed", DsType.COUNTER, 600, Double.NaN, Double.NaN);
@@ -146,7 +146,7 @@ public class Main {
 	    RrdDb rrdDb;
 	    rrdDb = new RrdDb(rrdDef);
 	
-	rrdFileToUpdate
+	//rrdFileToUpdate
 
     }
 
