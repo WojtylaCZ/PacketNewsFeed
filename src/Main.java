@@ -6,11 +6,6 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 
-import org.rrd4j.ConsolFun;
-import org.rrd4j.DsType;
-import org.rrd4j.core.RrdDb;
-import org.rrd4j.core.RrdDef;
-
 public class Main {
 
     // // -------------global variables
@@ -449,13 +444,13 @@ public class Main {
 		lastEndOfWindow = date.getTime();
 	    }
 	    lastFrameTime = date.getTime();
-	    if(lastFrameTime<15000000){
-		//15000000 = GMT: Tue, 23 Jun 1970 14:40:00 GMT
-		timeToAdd=System.currentTimeMillis();
-	    }else{
-		timeToAdd=0;
-	    }
-	    lastFrameTime=lastFrameTime+timeToAdd;
+//	    if(lastFrameTime<1500000000){
+//		//15000000 = GMT: Tue, 23 Jun 1970 14:40:00 GMT
+//		timeToAdd=System.currentTimeMillis();
+//	    }else{
+//		timeToAdd=0;
+//	    }
+//	    lastFrameTime=lastFrameTime+timeToAdd;
 	    
 	} catch (ParseException e) {
 	    e.printStackTrace();
