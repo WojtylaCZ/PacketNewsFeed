@@ -46,7 +46,7 @@ public class Main {
     static long window_datagramSumUDP_allOther = 0L;
     static long window_packetSum_IPv4 = 0L;
     static long window_packetSum_IPv6 = 0L;
-    
+
     static long timeToAdd = 0L;
 
     // static long window_datagram_TCP_general = 0L;
@@ -65,10 +65,10 @@ public class Main {
 	    timeWindowInMillis = Long.parseLong(args[1]) * 30 * 1000;
 
 	    rrdFileToUpdate = args[3];
-	     if (!new File(rrdFileToUpdate).exists()) {
-	     System.out.println("xxCannot find: " + rrdFileToUpdate);
-	     System.exit(0);
-	     }
+	    if (!new File(rrdFileToUpdate).exists()) {
+		System.out.println("xxCannot find: " + rrdFileToUpdate);
+		System.exit(0);
+	    }
 
 	    // new thread to avoid losing packet while parsing;
 	    read();
@@ -120,9 +120,9 @@ public class Main {
 		// System.out.println(lastEndOfWindow);
 		// System.out.println(timeWindowInMillis);
 
-		//printStatsWindow();
+		// printStatsWindow();
 
-		 updateRRDfile(lastEndOfWindow);
+		updateRRDfile(lastEndOfWindow);
 
 		// addWindowStatsToGlobal();
 		setWindowStatsToZero();
@@ -440,18 +440,35 @@ public class Main {
 	Date date;
 	try {
 	    date = formatter.parse(dateInString);
-	    if (lastEndOfWindow == 0) {
-		lastEndOfWindow = date.getTime();
-	    }
+	    // System.out.println(date);
+	    // System.out.println(date.getTime());
 	    lastFrameTime = date.getTime();
-//	    if(lastFrameTime<1500000000){
-//		//15000000 = GMT: Tue, 23 Jun 1970 14:40:00 GMT
-//		timeToAdd=System.currentTimeMillis();
-//	    }else{
-//		timeToAdd=0;
-//	    }
-//	    lastFrameTime=lastFrameTime+timeToAdd;
-	    
+
+	    if (lastFrameTime < 15000000) {
+		// 15000000 = GMT: Tue, 23 Jun 1970 14:40:00 GMT
+		timeToAdd = System.currentTimeMillis();
+	    } else {
+		timeToAdd = 0;
+	    }
+	    lastFrameTime = lastFrameTime + timeToAdd;
+
+	    if (lastEndOfWindow == 0) {
+		lastEndOfWindow = lastFrameTime;
+	    }
+
+	    // date = formatter.parse(dateInString);
+	    // if (lastEndOfWindow == 0) {
+	    // lastEndOfWindow = date.getTime();
+	    // }
+	    // lastFrameTime = date.getTime();
+	    // if(lastFrameTime<1500000000){
+	    // //15000000 = GMT: Tue, 23 Jun 1970 14:40:00 GMT
+	    // timeToAdd=System.currentTimeMillis();
+	    // }else{
+	    // timeToAdd=0;
+	    // }
+	    // lastFrameTime=lastFrameTime+timeToAdd;
+
 	} catch (ParseException e) {
 	    e.printStackTrace();
 	}
