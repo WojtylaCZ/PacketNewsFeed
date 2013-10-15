@@ -51,6 +51,8 @@ public class Main {
     static long window_datagramSumUDP_allOther = 0L;
     static long window_packetSum_IPv4 = 0L;
     static long window_packetSum_IPv6 = 0L;
+    
+    static long timeToAdd = 0L;
 
     // static long window_datagram_TCP_general = 0L;
     // static long window_datagram_UDP_general = 0L;
@@ -447,6 +449,14 @@ public class Main {
 		lastEndOfWindow = date.getTime();
 	    }
 	    lastFrameTime = date.getTime();
+	    if(lastFrameTime<15000000){
+		//15000000 = GMT: Tue, 23 Jun 1970 14:40:00 GMT
+		timeToAdd=System.currentTimeMillis();
+	    }else{
+		timeToAdd=0;
+	    }
+	    lastFrameTime=lastFrameTime+timeToAdd;
+	    
 	} catch (ParseException e) {
 	    e.printStackTrace();
 	}
