@@ -451,6 +451,7 @@ public class Main {
 		timeToAdd = 0;
 	    }
 	    lastFrameTime = lastFrameTime + timeToAdd;
+	    
 
 	    if (lastEndOfWindow == 0) {
 		lastEndOfWindow = lastFrameTime;
