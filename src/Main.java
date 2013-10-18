@@ -453,6 +453,7 @@ public class Main {
 		//timeToAdd = 0;
 		// lastFrameTime = lastFrameTime + timeToAdd;
 		lastFrameTime = lastFrameTime +0;
+		
 	    }
 	    
 
