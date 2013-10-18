@@ -63,7 +63,8 @@ public class Main {
 		System.exit(0);
 	    }
 	    timeWindowInMillis = Long.parseLong(args[1]) * 30 * 1000;
-
+	    timeToAdd = System.currentTimeMillis();
+	    
 	    rrdFileToUpdate = args[3];
 	    if (!new File(rrdFileToUpdate).exists()) {
 		System.out.println("xxCannot find: " + rrdFileToUpdate);
@@ -144,7 +145,7 @@ public class Main {
 	s.append(":");
 	s.append(Long.valueOf(window_datagramSumUDP_port53));
 	s.append(":");
-	s.append(Long.valueOf(window_datagramSumTCP_SYN_port25));
+	s.append(Long.valueOf(window_datagramSumTCP_SYN_port25+window_datagramSumTCP_SYN_port587));
 	s.append(":");
 	s.append(Long.valueOf(window_datagramSumTCP_SYN_port80));
 	s.append(":");
@@ -446,11 +447,14 @@ public class Main {
 
 	    if (lastFrameTime < 15000000) {
 		// 15000000 = GMT: Tue, 23 Jun 1970 14:40:00 GMT
-		timeToAdd = System.currentTimeMillis();
+		//timeToAdd = System.currentTimeMillis();
+		lastFrameTime = lastFrameTime + timeToAdd;
 	    } else {
-		timeToAdd = 0;
+		//timeToAdd = 0;
+		// lastFrameTime = lastFrameTime + timeToAdd;
+		lastFrameTime = lastFrameTime +0;
 	    }
-	    lastFrameTime = lastFrameTime + timeToAdd;
+	    
 
 	    if (lastEndOfWindow == 0) {
 		lastEndOfWindow = lastFrameTime;
