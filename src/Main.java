@@ -63,6 +63,7 @@ public class Main {
 		System.exit(0);
 	    }
 	    timeWindowInMillis = Long.parseLong(args[1]) * 30 * 1000;
+	    //Current time is created only when the app. is launched
 	    timeToAdd = System.currentTimeMillis();
 	    
 	    rrdFileToUpdate = args[3];
@@ -453,8 +454,7 @@ public class Main {
 		//timeToAdd = 0;
 		// lastFrameTime = lastFrameTime + timeToAdd;
 		
-		lastFrameTime = lastFrameTime +0;
-		
+		lastFrameTime = lastFrameTime +0;		
 	    }
 	    
 
