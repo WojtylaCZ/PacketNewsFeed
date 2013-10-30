@@ -62,13 +62,14 @@ public class Main {
 			.println("Arguments have to be: \n\t-t X, where X is number of minutes of floating window \n\t-f file.rrd");
 		System.exit(0);
 	    }
-	    timeWindowInMillis = Long.parseLong(args[1]) * 30 * 1000;
+	    timeWindowInMillis = Long.parseLong(args[1]) * 60 * 1000;
 	    //Current time is created only when the app. is launched
 	    timeToAdd = System.currentTimeMillis();
+	    //System.out.println(timeToAdd);
 	    
 	    rrdFileToUpdate = args[3];
 	    if (!new File(rrdFileToUpdate).exists()) {
-		System.out.println("xxCannot find: " + rrdFileToUpdate);
+		System.out.println("Cannot find: " + rrdFileToUpdate);
 		System.exit(0);
 	    }
 
@@ -123,13 +124,14 @@ public class Main {
 		// System.out.println(timeWindowInMillis);
 
 		// printStatsWindow();
-
+		System.out.println("vypissss: "+new Date(lastEndOfWindow-timeToAdd));
 		updateRRDfile(lastEndOfWindow);
 
 		// addWindowStatsToGlobal();
 		setWindowStatsToZero();
 		// printStatsGlobal();
 		lastEndOfWindow = lastFrameTime + timeWindowInMillis;
+		System.out.println("end window: "+new Date(lastEndOfWindow-timeToAdd));
 	    }
 	}
 	// printEndStats();
@@ -439,6 +441,7 @@ public class Main {
 	String pattern = "MMM dd, yyyy HH:mm:ss.SSS";
 	SimpleDateFormat formatter = new SimpleDateFormat(pattern);
 
+	
 	Date date;
 	try {
 	    date = formatter.parse(dateInString);
@@ -446,10 +449,12 @@ public class Main {
 	    // System.out.println(date.getTime());
 	    lastFrameTime = date.getTime();
 
-	    if (lastFrameTime < 15000000) {
-		// 15000000 = GMT: Tue, 23 Jun 1970 14:40:00 GMT
+	    if (lastFrameTime < 15000000000L) {
+		System.out.println(new Date(lastFrameTime));
+		// 15000000000 = GMT: Tue, 23 Jun 1970 14:40:00 GMT in MILICSECONDS!!!!
 		//timeToAdd = System.currentTimeMillis();
 		lastFrameTime = lastFrameTime + timeToAdd;
+		//System.out.println(new Date(lastFrameTime));
 	    } else {
 		//timeToAdd = 0;
 		// lastFrameTime = lastFrameTime + timeToAdd;
