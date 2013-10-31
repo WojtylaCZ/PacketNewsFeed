@@ -124,14 +124,14 @@ public class Main {
 		// System.out.println(timeWindowInMillis);
 
 		// printStatsWindow();
-		System.out.println("vypissss: "+new Date(lastEndOfWindow-timeToAdd));
+		//System.out.println("vypissss: "+new Date(lastEndOfWindow-timeToAdd));
 		updateRRDfile(lastEndOfWindow);
 
 		// addWindowStatsToGlobal();
 		setWindowStatsToZero();
 		// printStatsGlobal();
 		lastEndOfWindow = lastFrameTime + timeWindowInMillis;
-		System.out.println("end window: "+new Date(lastEndOfWindow-timeToAdd));
+		//System.out.println("end window: "+new Date(lastEndOfWindow-timeToAdd));
 	    }
 	}
 	// printEndStats();
@@ -450,7 +450,7 @@ public class Main {
 	    lastFrameTime = date.getTime();
 
 	    if (lastFrameTime < 15000000000L) {
-		System.out.println(new Date(lastFrameTime));
+		//System.out.println(new Date(lastFrameTime));
 		// 15000000000 = GMT: Tue, 23 Jun 1970 14:40:00 GMT in MILICSECONDS!!!!
 		//timeToAdd = System.currentTimeMillis();
 		lastFrameTime = lastFrameTime + timeToAdd;
