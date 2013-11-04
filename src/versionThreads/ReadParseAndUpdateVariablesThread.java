@@ -137,6 +137,7 @@ public class ReadParseAndUpdateVariablesThread extends Thread {
 
     private void parseTCPportDst(String tcpSyn, String tcpPort) {
 	if (tcpSyn.contentEquals("1")) {
+	    DataSummary.window_datagramSumTCP_all++;
 	    switch (tcpPort) {
 	    case "443":
 		DataSummary.window_datagramSumTCP_SYN_port443++;
@@ -153,13 +154,11 @@ public class ReadParseAndUpdateVariablesThread extends Thread {
 	    case "587":
 		DataSummary.window_datagramSumTCP_SYN_port587++;
 		break;
-	    default:
-		DataSummary.window_datagramSumTCP_all++;
-		break;
 	    }
-	} else{
-	    DataSummary.window_datagramSumTCP_all++;
-	}
+	} 
+//	else{
+//	    DataSummary.window_datagramSumTCP_all++;
+//	}
     }
 
     private void parseUDPportDst(String udpPort) {
