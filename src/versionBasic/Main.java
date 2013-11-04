@@ -1,4 +1,5 @@
 package versionBasic;
+
 import java.io.BufferedReader;
 import java.io.File;
 import java.io.IOException;
@@ -13,9 +14,8 @@ import java.util.Date;
  * These files were generated as part of a research project in the CVUT
  * University, Prague, Czech Republic. The goal is to store long-lived real
  * botnet traffic and to generate labeled netflows files. Any question feel free
- * to contact us: 
- * Sebastian Garcia, sebastian.garcia@agents.fel.cvut.cz
- * Vojtech Uhlir <vojtech.uhlir@agents.fel.cvut.cz
+ * to contact us: Sebastian Garcia, sebastian.garcia@agents.fel.cvut.cz Vojtech
+ * Uhlir <vojtech.uhlir@agents.fel.cvut.cz
  * 
  */
 public class Main {
@@ -68,8 +68,8 @@ public class Main {
     static String rrdFileToUpdate = " ";
 
     public static void main(String[] args) {
-	//program arguments :-t 2 -f data-source/Win2-test.rrd
-	
+	// program arguments :-t 2 -f data-source/Win2-test.rrd
+
 	try {
 	    if (args.length != 4) {
 		System.err
@@ -77,10 +77,10 @@ public class Main {
 		System.exit(0);
 	    }
 	    timeWindowInMillis = Long.parseLong(args[1]) * 60 * 1000;
-	    //Current time is created only when the app. is launched
+	    // Current time is created only when the app. is launched
 	    timeToAdd = System.currentTimeMillis();
-	    //System.out.println(timeToAdd);
-	    
+	    // System.out.println(timeToAdd);
+
 	    rrdFileToUpdate = args[3];
 	    if (!new File(rrdFileToUpdate).exists()) {
 		System.out.println("Cannot find: " + rrdFileToUpdate);
@@ -138,14 +138,16 @@ public class Main {
 		// System.out.println(timeWindowInMillis);
 
 		// printStatsWindow();
-		//System.out.println("vypissss: "+new Date(lastEndOfWindow-timeToAdd));
+		// System.out.println("vypissss: "+new
+		// Date(lastEndOfWindow-timeToAdd));
 		updateRRDfile(lastEndOfWindow);
 
 		// addWindowStatsToGlobal();
 		setWindowStatsToZero();
 		// printStatsGlobal();
 		lastEndOfWindow = lastFrameTime + timeWindowInMillis;
-		//System.out.println("end window: "+new Date(lastEndOfWindow-timeToAdd));
+		// System.out.println("end window: "+new
+		// Date(lastEndOfWindow-timeToAdd));
 	    }
 	}
 	// printEndStats();
@@ -162,7 +164,7 @@ public class Main {
 	s.append(":");
 	s.append(Long.valueOf(window_datagramSumUDP_port53));
 	s.append(":");
-	s.append(Long.valueOf(window_datagramSumTCP_SYN_port25+window_datagramSumTCP_SYN_port587));
+	s.append(Long.valueOf(window_datagramSumTCP_SYN_port25 + window_datagramSumTCP_SYN_port587));
 	s.append(":");
 	s.append(Long.valueOf(window_datagramSumTCP_SYN_port80));
 	s.append(":");
@@ -351,10 +353,9 @@ public class Main {
 		window_datagramSumTCP_allOther++;
 		break;
 	    }
+	} else {
+	    window_datagramSumTCP_allOther++;
 	}
-	// else {
-	// window_datagramSumTCP_allOther++;
-	// }
     }
 
     private static void parseUDPportDst(String udpPort) {
@@ -455,7 +456,6 @@ public class Main {
 	String pattern = "MMM dd, yyyy HH:mm:ss.SSS";
 	SimpleDateFormat formatter = new SimpleDateFormat(pattern);
 
-	
 	Date date;
 	try {
 	    date = formatter.parse(dateInString);
@@ -464,18 +464,18 @@ public class Main {
 	    lastFrameTime = date.getTime();
 
 	    if (lastFrameTime < 15000000000L) {
-		//System.out.println(new Date(lastFrameTime));
-		// 15000000000 = GMT: Tue, 23 Jun 1970 14:40:00 GMT in MILICSECONDS!!!!
-		//timeToAdd = System.currentTimeMillis();
+		// System.out.println(new Date(lastFrameTime));
+		// 15000000000 = GMT: Tue, 23 Jun 1970 14:40:00 GMT in
+		// MILICSECONDS!!!!
+		// timeToAdd = System.currentTimeMillis();
 		lastFrameTime = lastFrameTime + timeToAdd;
-		//System.out.println(new Date(lastFrameTime));
+		// System.out.println(new Date(lastFrameTime));
 	    } else {
-		//timeToAdd = 0;
+		// timeToAdd = 0;
 		// lastFrameTime = lastFrameTime + timeToAdd;
-		
-		lastFrameTime = lastFrameTime +0;		
+
+		lastFrameTime = lastFrameTime + 0;
 	    }
-	    
 
 	    if (lastEndOfWindow == 0) {
 		lastEndOfWindow = lastFrameTime;
