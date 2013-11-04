@@ -17,7 +17,9 @@ public class DataSummary {
     public static String rrdFileToUpdate = " ";
 
     public static long timeToAdd = 0L;
+
     public static long timeWindowInMillis = 0L;    
+
 
     // there is a lock to lock all variables preventins collions when one thread
     // updates those variable and the second one reads them and and reset them

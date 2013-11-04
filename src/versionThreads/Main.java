@@ -16,11 +16,11 @@ public class Main {
     public static void main(String[] args) {
 
 	if (args.length != 4) {
-	    System.err
-		    .println("Arguments have to be: \n\t-t X, where X is number of minutes for output. \n\t-f File.rrd to be updated.");
+	    System.err.println("Arguments have to be: \n\t-t X, where X is number of minutes for output. \n\t-f File.rrd to be updated.");
 	    System.exit(0);
 	}
 	DataSummary.timeWindowInMillis = Long.parseLong(args[1]) * 10 * 1000;
+
 	// Current time is created only when the app. is launched
 	DataSummary.timeToAdd = System.currentTimeMillis();
 
@@ -38,5 +38,4 @@ public class Main {
 
 	outputAndResetThread.start();
     }
-
 }

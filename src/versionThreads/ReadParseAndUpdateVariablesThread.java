@@ -21,7 +21,6 @@ import rrd4jLib.ThreadsTest2;
  */
 public class ReadParseAndUpdateVariablesThread extends Thread {
     String frame[];
-    
 
     @Override
     public void run() {
@@ -35,6 +34,7 @@ public class ReadParseAndUpdateVariablesThread extends Thread {
 		ThreadsTest2.lock.writeLock().lock();
 		try {
 		    read(line);
+		    sleep(5);
 		} catch (Exception ex) {
 		    ex.printStackTrace();
 		} finally {
@@ -157,7 +157,7 @@ public class ReadParseAndUpdateVariablesThread extends Thread {
 		DataSummary.window_datagramSumTCP_all++;
 		break;
 	    }
-	}else{
+	} else{
 	    DataSummary.window_datagramSumTCP_all++;
 	}
     }

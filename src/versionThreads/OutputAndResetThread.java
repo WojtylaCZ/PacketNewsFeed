@@ -35,7 +35,6 @@ public class OutputAndResetThread extends Thread {
 	    try {
 		printStatsForUpdateRRDfile();
 		setWindowStatsToZero();
-
 	    } catch (Exception ex) {
 		ex.printStackTrace();
 	    } finally {
