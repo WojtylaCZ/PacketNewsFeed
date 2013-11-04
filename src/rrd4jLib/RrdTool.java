@@ -1,4 +1,4 @@
-package rrdtool;
+package rrd4jLib;
 
 import java.io.File;
 import java.io.IOException;
