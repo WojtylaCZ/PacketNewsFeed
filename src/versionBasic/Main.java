@@ -333,6 +333,7 @@ public class Main {
 
     private static void parseTCPportDst(String tcpSyn, String tcpPort) {
 	if (tcpSyn.contentEquals("1")) {
+	    window_datagramSumTCP_allOther++;
 	    switch (tcpPort) {
 	    case "443":
 		window_datagramSumTCP_SYN_port443++;
@@ -349,13 +350,12 @@ public class Main {
 	    case "587":
 		window_datagramSumTCP_SYN_port587++;
 		break;
-	    default:
-		window_datagramSumTCP_allOther++;
-		break;
 	    }
-	} else {
-	    window_datagramSumTCP_allOther++;
-	}
+	} 
+	
+//	else {
+//	    window_datagramSumTCP_allOther++;
+//	}
     }
 
     private static void parseUDPportDst(String udpPort) {
