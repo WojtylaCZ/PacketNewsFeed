@@ -71,7 +71,6 @@ public class OutputAndResetThread extends Thread {
 	s.append(Long.valueOf(DataSummary.window_packetSum_IPv6));
 
 	System.out.println(s.toString());
-
     }
 
     private void setWindowStatsToZero() {

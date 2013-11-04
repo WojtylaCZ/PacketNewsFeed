@@ -37,7 +37,6 @@ public class Main {
 	Thread outputAndResetThread = new OutputAndResetThread();
 
 	outputAndResetThread.start();
-
     }
 
 }

@@ -21,6 +21,7 @@ import rrd4jLib.ThreadsTest2;
  */
 public class ReadParseAndUpdateVariablesThread extends Thread {
     String frame[];
+    
 
     @Override
     public void run() {
