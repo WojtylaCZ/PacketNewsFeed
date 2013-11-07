@@ -34,7 +34,7 @@ public class ReadParseAndUpdateVariablesThread extends Thread {
 		ThreadsTest2.lock.writeLock().lock();
 		try {
 		    read(line);
-		    sleep(5);
+		    sleep(1);
 		} catch (Exception ex) {
 		    ex.printStackTrace();
 		} finally {
@@ -137,6 +137,10 @@ public class ReadParseAndUpdateVariablesThread extends Thread {
 
     private void parseTCPportDst(String tcpSyn, String tcpPort) {
 	if (tcpSyn.contentEquals("1")) {
+//	    for (int i = 0; i < frame.length; i++) {
+//		System.out.print(frame[i]);
+//	    }	    
+//	    System.out.println("tedddddddddd");
 	    DataSummary.window_datagramSumTCP_all++;
 	    switch (tcpPort) {
 	    case "443":
@@ -162,12 +166,10 @@ public class ReadParseAndUpdateVariablesThread extends Thread {
     }
 
     private void parseUDPportDst(String udpPort) {
+	DataSummary.window_datagramSumUDP_all++;
 	switch (udpPort) {
 	case "53":
 	    DataSummary.window_datagramSumUDP_port53++;
-	    break;
-	default:
-	    DataSummary.window_datagramSumUDP_all++;
 	    break;
 	}
 
