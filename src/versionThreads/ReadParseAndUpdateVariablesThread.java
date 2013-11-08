@@ -34,7 +34,7 @@ public class ReadParseAndUpdateVariablesThread extends Thread {
 		ThreadsTest2.lock.writeLock().lock();
 		try {
 		    read(line);
-		    sleep(1);
+		    //sleep(1);
 		} catch (Exception ex) {
 		    ex.printStackTrace();
 		} finally {
