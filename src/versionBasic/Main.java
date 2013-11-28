@@ -18,6 +18,10 @@ import java.util.Date;
  * Uhlir <vojtech.uhlir@agents.fel.cvut.cz
  * 
  */
+
+/**
+ * This a simple basic version of reader packets from tail and tshark since beginning, waiting for packet by packet
+ */
 public class Main {
 
     // // -------------global variables

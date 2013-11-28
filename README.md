@@ -1,4 +1,8 @@
 /**
+* Simple version of reading packets waiting for next packet and output if the packet time is bigger than a window time.
+*/
+
+/**
  * Malware Capture Facility CVUT University, Prague, Czech Republic
  * 
  * These files were generated as part of a research project in the CVUT
