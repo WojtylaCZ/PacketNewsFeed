@@ -70,14 +70,16 @@ public class Main {
     // static long window_datagram_allOther = 0L;
 
     static String rrdFileToUpdate = " ";
+    
+    static long timeWhichIsSubstractedBeforePrintingResult = 0L;
 
     public static void main(String[] args) {
 	// program arguments :-t 2 -f data-source/Win2-test.rrd 
 
 	try {
-	    if (args.length != 4) {
+	    if (args.length != 6) {
 		System.err
-			.println("Arguments have to be: \n\t-t X, where X is number of minutes of floating window \n\t-f file.rrd");
+			.println("Arguments have to be: \n\t-t X, where X is number of minutes of floating window \n\t-f file.rrd \n -s time to substract from final time or 0.");
 		System.exit(0);
 	    }
 	    timeWindowInMillis = Long.parseLong(args[1]) * 60 * 1000;
@@ -90,6 +92,9 @@ public class Main {
 		System.out.println("Cannot find: " + rrdFileToUpdate);
 		System.exit(0);
 	    }
+	    
+	    timeWhichIsSubstractedBeforePrintingResult =Long.parseLong(args[5]);
+	    
 
 	    // new thread to avoid losing packet while parsing;
 	    read();
@@ -163,7 +168,7 @@ public class Main {
 	s.append("update ");
 	s.append(rrdFileToUpdate);
 	s.append(" ");
-	String x = String.valueOf(lastEndOfWindow);
+	String x = String.valueOf(lastEndOfWindow-timeWhichIsSubstractedBeforePrintingResult);
 	s.append(x.substring(0, x.length() - 3));
 	s.append(":");
 	s.append(Long.valueOf(window_datagramSumUDP_port53));
