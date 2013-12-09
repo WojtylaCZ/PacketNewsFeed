@@ -72,7 +72,7 @@ public class Main {
     static String rrdFileToUpdate = " ";
 
     public static void main(String[] args) {
-	// program arguments :-t 2 -f data-source/Win2-test.rrd
+	// program arguments :-t 2 -f data-source/Win2-test.rrd 
 
 	try {
 	    if (args.length != 4) {
