@@ -79,7 +79,7 @@ public class Main {
 	try {
 	    if (args.length != 6) {
 		System.err
-			.println("Arguments have to be: \n\t-t X, where X is number of minutes of floating window \n\t-f file.rrd \n -s time to substract from final time or 0.");
+			.println("Arguments have to be: \n\t-t X, where X is number of minutes of floating window \n\t-f file.rrd \n -s time to substract from final time or 0 in hours");
 		System.exit(0);
 	    }
 	    timeWindowInMillis = Long.parseLong(args[1]) * 60 * 1000;
@@ -92,8 +92,8 @@ public class Main {
 		System.out.println("Cannot find: " + rrdFileToUpdate);
 		System.exit(0);
 	    }
-	    
-	    timeWhichIsSubstractedBeforePrintingResult =Long.parseLong(args[5]);
+//	    in hours
+	    timeWhichIsSubstractedBeforePrintingResult =Long.parseLong(args[5])*60* 60 * 1000;
 	    
 
 	    // new thread to avoid losing packet while parsing;
