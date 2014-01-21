@@ -85,6 +85,9 @@ public class Main {
 	String frame[];
 	String line;
 
+	//just ignore the first line!
+	input.readLine();
+	
 	while ((line = input.readLine()) != null) {
 	    frame = line.split(",");
 	    // numberOfFramesWholePCAP++;
